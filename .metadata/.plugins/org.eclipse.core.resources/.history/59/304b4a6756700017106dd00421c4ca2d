@@ -1,0 +1,5 @@
+package org.xtext.entites.entites;
+
+public class EntitiesEMFExample {
+
+}

@@ -1,0 +1,25 @@
+package org.xtext.entites.entites;
+
+import org.xtext.entites.entites.entities.Attribute;
+import org.xtext.entites.entites.entities.EntitiesFactory;
+import org.xtext.entites.entites.entities.Entity;
+import org.xtext.entites.entites.entities.Model;
+public class EntitiesEMFExample {
+	public static void main(String[] args) {
+		EntitiesFactory factory = EntitiesFactory.eINSTANCE;
+		Entity superEntity = factory.createEntity();
+		superEntity.setName("MySuperEntity");
+		Entity entity = factory.createEntity();
+		entity.setName("MyEntity");
+		entity.setSuperType(superEntity);
+		Attribute attribute = factory.createAttribute();
+		attribute.setName("myattribute");
+		attribute.setArray(false);
+		attribute.setType(superEntity);
+		entity.getAttributes().add(attribute);
+		Model model = factory.createModel();
+		model.getEntities().add(superEntity);
+		model.getEntities().add(entity);
+		}
+
+}

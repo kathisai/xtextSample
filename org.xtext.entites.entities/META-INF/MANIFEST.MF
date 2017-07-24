@@ -1,0 +1,29 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: org.xtext.entites.entities
+Bundle-Vendor: My Company
+Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: org.xtext.entites.entities; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.xtext,
+ org.eclipse.xtext.xbase,
+ org.eclipse.equinox.common;bundle-version="3.5.0",
+ org.eclipse.emf.ecore,
+ org.eclipse.xtext.xbase.lib,
+ org.antlr.runtime,
+ org.eclipse.xtext.util,
+ org.eclipse.xtend.lib,
+ org.eclipse.emf.common
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: org.xtext.entites.entites,
+ org.xtext.entites.entites.entities.util,
+ org.xtext.entites.entites.entities.impl,
+ org.xtext.entites.entites.parser.antlr,
+ org.xtext.entites.entites.scoping,
+ org.xtext.entites.entites.services,
+ org.xtext.entites.entites.entities,
+ org.xtext.entites.entites.serializer,
+ org.xtext.entites.entites.generator,
+ org.xtext.entites.entites.parser.antlr.internal,
+ org.xtext.entites.entites.validation
+Import-Package: org.apache.log4j
