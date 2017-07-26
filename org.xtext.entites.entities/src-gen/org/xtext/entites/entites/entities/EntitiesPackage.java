@@ -142,7 +142,7 @@ public interface EntitiesPackage extends EPackage
   int ATTRIBUTE = 2;
 
   /**
-   * The feature id for the '<em><b>Type</b></em>' reference.
+   * The feature id for the '<em><b>Type</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -151,31 +151,13 @@ public interface EntitiesPackage extends EPackage
   int ATTRIBUTE__TYPE = 0;
 
   /**
-   * The feature id for the '<em><b>Array</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ATTRIBUTE__ARRAY = 1;
-
-  /**
-   * The feature id for the '<em><b>Length</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ATTRIBUTE__LENGTH = 2;
-
-  /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ATTRIBUTE__NAME = 3;
+  int ATTRIBUTE__NAME = 1;
 
   /**
    * The number of structural features of the '<em>Attribute</em>' class.
@@ -184,7 +166,128 @@ public interface EntitiesPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ATTRIBUTE_FEATURE_COUNT = 4;
+  int ATTRIBUTE_FEATURE_COUNT = 2;
+
+  /**
+   * The meta object id for the '{@link org.xtext.entites.entites.entities.impl.AttributeTypeImpl <em>Attribute Type</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.entites.entites.entities.impl.AttributeTypeImpl
+   * @see org.xtext.entites.entites.entities.impl.EntitiesPackageImpl#getAttributeType()
+   * @generated
+   */
+  int ATTRIBUTE_TYPE = 3;
+
+  /**
+   * The feature id for the '<em><b>Element Type</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ATTRIBUTE_TYPE__ELEMENT_TYPE = 0;
+
+  /**
+   * The feature id for the '<em><b>Array</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ATTRIBUTE_TYPE__ARRAY = 1;
+
+  /**
+   * The feature id for the '<em><b>Length</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ATTRIBUTE_TYPE__LENGTH = 2;
+
+  /**
+   * The number of structural features of the '<em>Attribute Type</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ATTRIBUTE_TYPE_FEATURE_COUNT = 3;
+
+  /**
+   * The meta object id for the '{@link org.xtext.entites.entites.entities.impl.ElementTypeImpl <em>Element Type</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.entites.entites.entities.impl.ElementTypeImpl
+   * @see org.xtext.entites.entites.entities.impl.EntitiesPackageImpl#getElementType()
+   * @generated
+   */
+  int ELEMENT_TYPE = 4;
+
+  /**
+   * The number of structural features of the '<em>Element Type</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ELEMENT_TYPE_FEATURE_COUNT = 0;
+
+  /**
+   * The meta object id for the '{@link org.xtext.entites.entites.entities.impl.BasicTypeImpl <em>Basic Type</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.entites.entites.entities.impl.BasicTypeImpl
+   * @see org.xtext.entites.entites.entities.impl.EntitiesPackageImpl#getBasicType()
+   * @generated
+   */
+  int BASIC_TYPE = 5;
+
+  /**
+   * The feature id for the '<em><b>Type Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BASIC_TYPE__TYPE_NAME = ELEMENT_TYPE_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Basic Type</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BASIC_TYPE_FEATURE_COUNT = ELEMENT_TYPE_FEATURE_COUNT + 1;
+
+  /**
+   * The meta object id for the '{@link org.xtext.entites.entites.entities.impl.EntityTypeImpl <em>Entity Type</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.entites.entites.entities.impl.EntityTypeImpl
+   * @see org.xtext.entites.entites.entities.impl.EntitiesPackageImpl#getEntityType()
+   * @generated
+   */
+  int ENTITY_TYPE = 6;
+
+  /**
+   * The feature id for the '<em><b>Entity</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ENTITY_TYPE__ENTITY = ELEMENT_TYPE_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Entity Type</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ENTITY_TYPE_FEATURE_COUNT = ELEMENT_TYPE_FEATURE_COUNT + 1;
 
 
   /**
@@ -262,37 +365,15 @@ public interface EntitiesPackage extends EPackage
   EClass getAttribute();
 
   /**
-   * Returns the meta object for the reference '{@link org.xtext.entites.entites.entities.Attribute#getType <em>Type</em>}'.
+   * Returns the meta object for the containment reference '{@link org.xtext.entites.entites.entities.Attribute#getType <em>Type</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>Type</em>'.
+   * @return the meta object for the containment reference '<em>Type</em>'.
    * @see org.xtext.entites.entites.entities.Attribute#getType()
    * @see #getAttribute()
    * @generated
    */
   EReference getAttribute_Type();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.xtext.entites.entites.entities.Attribute#isArray <em>Array</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Array</em>'.
-   * @see org.xtext.entites.entites.entities.Attribute#isArray()
-   * @see #getAttribute()
-   * @generated
-   */
-  EAttribute getAttribute_Array();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.xtext.entites.entites.entities.Attribute#getLength <em>Length</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Length</em>'.
-   * @see org.xtext.entites.entites.entities.Attribute#getLength()
-   * @see #getAttribute()
-   * @generated
-   */
-  EAttribute getAttribute_Length();
 
   /**
    * Returns the meta object for the attribute '{@link org.xtext.entites.entites.entities.Attribute#getName <em>Name</em>}'.
@@ -304,6 +385,101 @@ public interface EntitiesPackage extends EPackage
    * @generated
    */
   EAttribute getAttribute_Name();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.entites.entites.entities.AttributeType <em>Attribute Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Attribute Type</em>'.
+   * @see org.xtext.entites.entites.entities.AttributeType
+   * @generated
+   */
+  EClass getAttributeType();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.entites.entites.entities.AttributeType#getElementType <em>Element Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Element Type</em>'.
+   * @see org.xtext.entites.entites.entities.AttributeType#getElementType()
+   * @see #getAttributeType()
+   * @generated
+   */
+  EReference getAttributeType_ElementType();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.entites.entites.entities.AttributeType#isArray <em>Array</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Array</em>'.
+   * @see org.xtext.entites.entites.entities.AttributeType#isArray()
+   * @see #getAttributeType()
+   * @generated
+   */
+  EAttribute getAttributeType_Array();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.entites.entites.entities.AttributeType#getLength <em>Length</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Length</em>'.
+   * @see org.xtext.entites.entites.entities.AttributeType#getLength()
+   * @see #getAttributeType()
+   * @generated
+   */
+  EAttribute getAttributeType_Length();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.entites.entites.entities.ElementType <em>Element Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Element Type</em>'.
+   * @see org.xtext.entites.entites.entities.ElementType
+   * @generated
+   */
+  EClass getElementType();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.entites.entites.entities.BasicType <em>Basic Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Basic Type</em>'.
+   * @see org.xtext.entites.entites.entities.BasicType
+   * @generated
+   */
+  EClass getBasicType();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.entites.entites.entities.BasicType#getTypeName <em>Type Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Type Name</em>'.
+   * @see org.xtext.entites.entites.entities.BasicType#getTypeName()
+   * @see #getBasicType()
+   * @generated
+   */
+  EAttribute getBasicType_TypeName();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.entites.entites.entities.EntityType <em>Entity Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Entity Type</em>'.
+   * @see org.xtext.entites.entites.entities.EntityType
+   * @generated
+   */
+  EClass getEntityType();
+
+  /**
+   * Returns the meta object for the reference '{@link org.xtext.entites.entites.entities.EntityType#getEntity <em>Entity</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Entity</em>'.
+   * @see org.xtext.entites.entites.entities.EntityType#getEntity()
+   * @see #getEntityType()
+   * @generated
+   */
+  EReference getEntityType_Entity();
 
   /**
    * Returns the factory that creates the instances of the model.
@@ -391,28 +567,12 @@ public interface EntitiesPackage extends EPackage
     EClass ATTRIBUTE = eINSTANCE.getAttribute();
 
     /**
-     * The meta object literal for the '<em><b>Type</b></em>' reference feature.
+     * The meta object literal for the '<em><b>Type</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     EReference ATTRIBUTE__TYPE = eINSTANCE.getAttribute_Type();
-
-    /**
-     * The meta object literal for the '<em><b>Array</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute ATTRIBUTE__ARRAY = eINSTANCE.getAttribute_Array();
-
-    /**
-     * The meta object literal for the '<em><b>Length</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute ATTRIBUTE__LENGTH = eINSTANCE.getAttribute_Length();
 
     /**
      * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
@@ -421,6 +581,86 @@ public interface EntitiesPackage extends EPackage
      * @generated
      */
     EAttribute ATTRIBUTE__NAME = eINSTANCE.getAttribute_Name();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.entites.entites.entities.impl.AttributeTypeImpl <em>Attribute Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.entites.entites.entities.impl.AttributeTypeImpl
+     * @see org.xtext.entites.entites.entities.impl.EntitiesPackageImpl#getAttributeType()
+     * @generated
+     */
+    EClass ATTRIBUTE_TYPE = eINSTANCE.getAttributeType();
+
+    /**
+     * The meta object literal for the '<em><b>Element Type</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ATTRIBUTE_TYPE__ELEMENT_TYPE = eINSTANCE.getAttributeType_ElementType();
+
+    /**
+     * The meta object literal for the '<em><b>Array</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ATTRIBUTE_TYPE__ARRAY = eINSTANCE.getAttributeType_Array();
+
+    /**
+     * The meta object literal for the '<em><b>Length</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ATTRIBUTE_TYPE__LENGTH = eINSTANCE.getAttributeType_Length();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.entites.entites.entities.impl.ElementTypeImpl <em>Element Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.entites.entites.entities.impl.ElementTypeImpl
+     * @see org.xtext.entites.entites.entities.impl.EntitiesPackageImpl#getElementType()
+     * @generated
+     */
+    EClass ELEMENT_TYPE = eINSTANCE.getElementType();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.entites.entites.entities.impl.BasicTypeImpl <em>Basic Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.entites.entites.entities.impl.BasicTypeImpl
+     * @see org.xtext.entites.entites.entities.impl.EntitiesPackageImpl#getBasicType()
+     * @generated
+     */
+    EClass BASIC_TYPE = eINSTANCE.getBasicType();
+
+    /**
+     * The meta object literal for the '<em><b>Type Name</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute BASIC_TYPE__TYPE_NAME = eINSTANCE.getBasicType_TypeName();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.entites.entites.entities.impl.EntityTypeImpl <em>Entity Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.entites.entites.entities.impl.EntityTypeImpl
+     * @see org.xtext.entites.entites.entities.impl.EntitiesPackageImpl#getEntityType()
+     * @generated
+     */
+    EClass ENTITY_TYPE = eINSTANCE.getEntityType();
+
+    /**
+     * The meta object literal for the '<em><b>Entity</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ENTITY_TYPE__ENTITY = eINSTANCE.getEntityType_Entity();
 
   }
 

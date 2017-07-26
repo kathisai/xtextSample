@@ -3,10 +3,23 @@
  */
 package org.xtext.entites.entites.generator;
 
+import com.google.common.base.Objects;
+import com.google.common.collect.Iterables;
+import java.util.Arrays;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.generator.AbstractGenerator;
 import org.eclipse.xtext.generator.IFileSystemAccess2;
 import org.eclipse.xtext.generator.IGeneratorContext;
+import org.eclipse.xtext.xbase.lib.IteratorExtensions;
+import org.xtext.entites.entites.entities.Attribute;
+import org.xtext.entites.entites.entities.AttributeType;
+import org.xtext.entites.entites.entities.BasicType;
+import org.xtext.entites.entites.entities.ElementType;
+import org.xtext.entites.entites.entities.Entity;
+import org.xtext.entites.entites.entities.EntityType;
 
 /**
  * Generates code from your model files on save.
@@ -17,5 +30,90 @@ import org.eclipse.xtext.generator.IGeneratorContext;
 public class EntitiesGenerator extends AbstractGenerator {
   @Override
   public void doGenerate(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
+    Iterable<Entity> _filter = Iterables.<Entity>filter(IteratorExtensions.<EObject>toIterable(resource.getAllContents()), Entity.class);
+    for (final Entity e : _filter) {
+      String _name_id = e.getName_id();
+      String _plus = ("entities/" + _name_id);
+      String _plus_1 = (_plus + ".java");
+      fsa.generateFile(_plus_1, 
+        this.compile(e));
+    }
+  }
+  
+  public CharSequence compile(final Entity entity) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("package entities;");
+    _builder.newLine();
+    _builder.append("public class ");
+    String _name_id = entity.getName_id();
+    _builder.append(_name_id);
+    _builder.append(" ");
+    {
+      Entity _superType = entity.getSuperType();
+      boolean _notEquals = (!Objects.equal(_superType, null));
+      if (_notEquals) {
+        _builder.append(" extends ");
+        String _name_id_1 = entity.getSuperType().getName_id();
+        _builder.append(_name_id_1);
+        _builder.append(" ");
+      }
+    }
+    _builder.append(" {");
+    _builder.newLineIfNotEmpty();
+    {
+      EList<Attribute> _attributes = entity.getAttributes();
+      for(final Attribute attribute : _attributes) {
+        _builder.append("\t");
+        _builder.append("private ");
+        String _compile = this.compile(attribute.getType());
+        _builder.append(_compile, "\t");
+        _builder.append(" ");
+        String _name = attribute.getName();
+        _builder.append(_name, "\t");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    _builder.append("}");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  public String compile(final AttributeType attributeType) {
+    String _typeToString = this.typeToString(attributeType.getElementType());
+    String _xifexpression = null;
+    boolean _isArray = attributeType.isArray();
+    if (_isArray) {
+      _xifexpression = "[]";
+    } else {
+      _xifexpression = "";
+    }
+    return (_typeToString + _xifexpression);
+  }
+  
+  protected String _typeToString(final BasicType type) {
+    String _xifexpression = null;
+    String _typeName = type.getTypeName();
+    boolean _equals = Objects.equal(_typeName, "string");
+    if (_equals) {
+      _xifexpression = "String";
+    } else {
+      _xifexpression = type.getTypeName();
+    }
+    return _xifexpression;
+  }
+  
+  protected String _typeToString(final EntityType type) {
+    return type.getEntity().getName_id();
+  }
+  
+  public String typeToString(final ElementType type) {
+    if (type instanceof BasicType) {
+      return _typeToString((BasicType)type);
+    } else if (type instanceof EntityType) {
+      return _typeToString((EntityType)type);
+    } else {
+      throw new IllegalArgumentException("Unhandled parameter types: " +
+        Arrays.<Object>asList(type).toString());
+    }
   }
 }

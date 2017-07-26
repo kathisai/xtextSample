@@ -91,6 +91,26 @@ public class EntitiesAdapterFactory extends AdapterFactoryImpl
         return createAttributeAdapter();
       }
       @Override
+      public Adapter caseAttributeType(AttributeType object)
+      {
+        return createAttributeTypeAdapter();
+      }
+      @Override
+      public Adapter caseElementType(ElementType object)
+      {
+        return createElementTypeAdapter();
+      }
+      @Override
+      public Adapter caseBasicType(BasicType object)
+      {
+        return createBasicTypeAdapter();
+      }
+      @Override
+      public Adapter caseEntityType(EntityType object)
+      {
+        return createEntityTypeAdapter();
+      }
+      @Override
       public Adapter defaultCase(EObject object)
       {
         return createEObjectAdapter();
@@ -153,6 +173,66 @@ public class EntitiesAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createAttributeAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.entites.entites.entities.AttributeType <em>Attribute Type</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.entites.entites.entities.AttributeType
+   * @generated
+   */
+  public Adapter createAttributeTypeAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.entites.entites.entities.ElementType <em>Element Type</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.entites.entites.entities.ElementType
+   * @generated
+   */
+  public Adapter createElementTypeAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.entites.entites.entities.BasicType <em>Basic Type</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.entites.entites.entities.BasicType
+   * @generated
+   */
+  public Adapter createBasicTypeAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.entites.entites.entities.EntityType <em>Entity Type</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.entites.entites.entities.EntityType
+   * @generated
+   */
+  public Adapter createEntityTypeAdapter()
   {
     return null;
   }

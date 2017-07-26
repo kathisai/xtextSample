@@ -68,6 +68,10 @@ public class EntitiesFactoryImpl extends EFactoryImpl implements EntitiesFactory
       case EntitiesPackage.MODEL: return createModel();
       case EntitiesPackage.ENTITY: return createEntity();
       case EntitiesPackage.ATTRIBUTE: return createAttribute();
+      case EntitiesPackage.ATTRIBUTE_TYPE: return createAttributeType();
+      case EntitiesPackage.ELEMENT_TYPE: return createElementType();
+      case EntitiesPackage.BASIC_TYPE: return createBasicType();
+      case EntitiesPackage.ENTITY_TYPE: return createEntityType();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -104,6 +108,50 @@ public class EntitiesFactoryImpl extends EFactoryImpl implements EntitiesFactory
   {
     AttributeImpl attribute = new AttributeImpl();
     return attribute;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public AttributeType createAttributeType()
+  {
+    AttributeTypeImpl attributeType = new AttributeTypeImpl();
+    return attributeType;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ElementType createElementType()
+  {
+    ElementTypeImpl elementType = new ElementTypeImpl();
+    return elementType;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public BasicType createBasicType()
+  {
+    BasicTypeImpl basicType = new BasicTypeImpl();
+    return basicType;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EntityType createEntityType()
+  {
+    EntityTypeImpl entityType = new EntityTypeImpl();
+    return entityType;
   }
 
   /**

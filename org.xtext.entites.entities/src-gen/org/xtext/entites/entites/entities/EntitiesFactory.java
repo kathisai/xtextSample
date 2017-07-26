@@ -51,6 +51,42 @@ public interface EntitiesFactory extends EFactory
   Attribute createAttribute();
 
   /**
+   * Returns a new object of class '<em>Attribute Type</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Attribute Type</em>'.
+   * @generated
+   */
+  AttributeType createAttributeType();
+
+  /**
+   * Returns a new object of class '<em>Element Type</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Element Type</em>'.
+   * @generated
+   */
+  ElementType createElementType();
+
+  /**
+   * Returns a new object of class '<em>Basic Type</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Basic Type</em>'.
+   * @generated
+   */
+  BasicType createBasicType();
+
+  /**
+   * Returns a new object of class '<em>Entity Type</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Entity Type</em>'.
+   * @generated
+   */
+  EntityType createEntityType();
+
+  /**
    * Returns the package supported by this factory.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

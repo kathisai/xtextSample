@@ -11,9 +11,13 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.xtext.entites.entites.entities.Attribute;
+import org.xtext.entites.entites.entities.AttributeType;
+import org.xtext.entites.entites.entities.BasicType;
+import org.xtext.entites.entites.entities.ElementType;
 import org.xtext.entites.entites.entities.EntitiesFactory;
 import org.xtext.entites.entites.entities.EntitiesPackage;
 import org.xtext.entites.entites.entities.Entity;
+import org.xtext.entites.entites.entities.EntityType;
 import org.xtext.entites.entites.entities.Model;
 
 /**
@@ -44,6 +48,34 @@ public class EntitiesPackageImpl extends EPackageImpl implements EntitiesPackage
    * @generated
    */
   private EClass attributeEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass attributeTypeEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass elementTypeEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass basicTypeEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass entityTypeEClass = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with
@@ -193,7 +225,7 @@ public class EntitiesPackageImpl extends EPackageImpl implements EntitiesPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getAttribute_Array()
+  public EAttribute getAttribute_Name()
   {
     return (EAttribute)attributeEClass.getEStructuralFeatures().get(1);
   }
@@ -203,9 +235,9 @@ public class EntitiesPackageImpl extends EPackageImpl implements EntitiesPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getAttribute_Length()
+  public EClass getAttributeType()
   {
-    return (EAttribute)attributeEClass.getEStructuralFeatures().get(2);
+    return attributeTypeEClass;
   }
 
   /**
@@ -213,9 +245,79 @@ public class EntitiesPackageImpl extends EPackageImpl implements EntitiesPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getAttribute_Name()
+  public EReference getAttributeType_ElementType()
   {
-    return (EAttribute)attributeEClass.getEStructuralFeatures().get(3);
+    return (EReference)attributeTypeEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getAttributeType_Array()
+  {
+    return (EAttribute)attributeTypeEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getAttributeType_Length()
+  {
+    return (EAttribute)attributeTypeEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getElementType()
+  {
+    return elementTypeEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getBasicType()
+  {
+    return basicTypeEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getBasicType_TypeName()
+  {
+    return (EAttribute)basicTypeEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getEntityType()
+  {
+    return entityTypeEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getEntityType_Entity()
+  {
+    return (EReference)entityTypeEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -258,9 +360,20 @@ public class EntitiesPackageImpl extends EPackageImpl implements EntitiesPackage
 
     attributeEClass = createEClass(ATTRIBUTE);
     createEReference(attributeEClass, ATTRIBUTE__TYPE);
-    createEAttribute(attributeEClass, ATTRIBUTE__ARRAY);
-    createEAttribute(attributeEClass, ATTRIBUTE__LENGTH);
     createEAttribute(attributeEClass, ATTRIBUTE__NAME);
+
+    attributeTypeEClass = createEClass(ATTRIBUTE_TYPE);
+    createEReference(attributeTypeEClass, ATTRIBUTE_TYPE__ELEMENT_TYPE);
+    createEAttribute(attributeTypeEClass, ATTRIBUTE_TYPE__ARRAY);
+    createEAttribute(attributeTypeEClass, ATTRIBUTE_TYPE__LENGTH);
+
+    elementTypeEClass = createEClass(ELEMENT_TYPE);
+
+    basicTypeEClass = createEClass(BASIC_TYPE);
+    createEAttribute(basicTypeEClass, BASIC_TYPE__TYPE_NAME);
+
+    entityTypeEClass = createEClass(ENTITY_TYPE);
+    createEReference(entityTypeEClass, ENTITY_TYPE__ENTITY);
   }
 
   /**
@@ -292,6 +405,8 @@ public class EntitiesPackageImpl extends EPackageImpl implements EntitiesPackage
     // Set bounds for type parameters
 
     // Add supertypes to classes
+    basicTypeEClass.getESuperTypes().add(this.getElementType());
+    entityTypeEClass.getESuperTypes().add(this.getElementType());
 
     // Initialize classes and features; add operations and parameters
     initEClass(modelEClass, Model.class, "Model", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -303,10 +418,21 @@ public class EntitiesPackageImpl extends EPackageImpl implements EntitiesPackage
     initEReference(getEntity_Attributes(), this.getAttribute(), null, "attributes", null, 0, -1, Entity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(attributeEClass, Attribute.class, "Attribute", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getAttribute_Type(), this.getEntity(), null, "type", null, 0, 1, Attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getAttribute_Array(), ecorePackage.getEBoolean(), "array", null, 0, 1, Attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getAttribute_Length(), ecorePackage.getEInt(), "length", null, 0, 1, Attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getAttribute_Type(), this.getAttributeType(), null, "type", null, 0, 1, Attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getAttribute_Name(), ecorePackage.getEString(), "name", null, 0, 1, Attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(attributeTypeEClass, AttributeType.class, "AttributeType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getAttributeType_ElementType(), this.getElementType(), null, "elementType", null, 0, 1, AttributeType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getAttributeType_Array(), ecorePackage.getEBoolean(), "array", null, 0, 1, AttributeType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getAttributeType_Length(), ecorePackage.getEInt(), "length", null, 0, 1, AttributeType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(elementTypeEClass, ElementType.class, "ElementType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(basicTypeEClass, BasicType.class, "BasicType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getBasicType_TypeName(), ecorePackage.getEString(), "typeName", null, 0, 1, BasicType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(entityTypeEClass, EntityType.class, "EntityType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getEntityType_Entity(), this.getEntity(), null, "entity", null, 0, 1, EntityType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Create resource
     createResource(eNS_URI);

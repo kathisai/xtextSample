@@ -7,6 +7,10 @@ import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.AbstractGenerator
 import org.eclipse.xtext.generator.IFileSystemAccess2
 import org.eclipse.xtext.generator.IGeneratorContext
+import org.xtext.entites.entites.entities.Entity
+import org.xtext.entites.entites.entities.AttributeType
+import org.xtext.entites.entites.entities.BasicType
+import org.xtext.entites.entites.entities.EntityType
 
 /**
  * Generates code from your model files on save.
@@ -21,5 +25,36 @@ class EntitiesGenerator extends AbstractGenerator {
 //				.filter(Greeting)
 //				.map[name]
 //				.join(', '))
+for (e : resource.allContents.toIterable.filter(Entity)){
+fsa.generateFile(
+"entities/" + e.name_id + ".java",
+e.compile)
+}
+
 	}
+	
+	def  compile(Entity entity){
+		'''
+		package entities;
+		public class «entity.name_id» «IF entity.superType != null» extends «entity.superType.name_id» «ENDIF» {
+			«FOR attribute : entity.attributes»
+			private «attribute.type.compile» «attribute.name»
+			«ENDFOR»
+		}
+		'''
+	}
+	
+	def compile(AttributeType attributeType) {
+		attributeType.elementType.typeToString + if(attributeType.array) "[]" else ""
+	}
+
+	def dispatch typeToString(BasicType type) {
+		if(type.typeName == "string") "String" else type.typeName
+	}
+
+	def dispatch typeToString(EntityType type) {
+		type.entity.name_id
+	}
+	
+	
 }

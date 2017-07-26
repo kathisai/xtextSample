@@ -6,6 +6,7 @@ package org.xtext.entites.entites.services;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import java.util.List;
+import org.eclipse.xtext.Alternatives;
 import org.eclipse.xtext.Assignment;
 import org.eclipse.xtext.CrossReference;
 import org.eclipse.xtext.Grammar;
@@ -102,33 +103,57 @@ public class EntitiesGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.entites.entites.Entities.Attribute");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cTypeAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final CrossReference cTypeEntityCrossReference_0_0 = (CrossReference)cTypeAssignment_0.eContents().get(0);
-		private final RuleCall cTypeEntityIDTerminalRuleCall_0_0_1 = (RuleCall)cTypeEntityCrossReference_0_0.eContents().get(1);
+		private final RuleCall cTypeAttributeTypeParserRuleCall_0_0 = (RuleCall)cTypeAssignment_0.eContents().get(0);
+		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		private final Keyword cSemicolonKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		
+		//Attribute:
+		//	type=AttributeType name=ID ';';
+		@Override public ParserRule getRule() { return rule; }
+		
+		//type=AttributeType name=ID ';'
+		public Group getGroup() { return cGroup; }
+		
+		//type=AttributeType
+		public Assignment getTypeAssignment_0() { return cTypeAssignment_0; }
+		
+		//AttributeType
+		public RuleCall getTypeAttributeTypeParserRuleCall_0_0() { return cTypeAttributeTypeParserRuleCall_0_0; }
+		
+		//name=ID
+		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+		
+		//ID
+		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
+		
+		//';'
+		public Keyword getSemicolonKeyword_2() { return cSemicolonKeyword_2; }
+	}
+	public class AttributeTypeElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.entites.entites.Entities.AttributeType");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cElementTypeAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cElementTypeElementTypeParserRuleCall_0_0 = (RuleCall)cElementTypeAssignment_0.eContents().get(0);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
 		private final Assignment cArrayAssignment_1_0 = (Assignment)cGroup_1.eContents().get(0);
 		private final Keyword cArrayLeftSquareBracketKeyword_1_0_0 = (Keyword)cArrayAssignment_1_0.eContents().get(0);
 		private final Assignment cLengthAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
 		private final RuleCall cLengthINTTerminalRuleCall_1_1_0 = (RuleCall)cLengthAssignment_1_1.eContents().get(0);
 		private final Keyword cRightSquareBracketKeyword_1_2 = (Keyword)cGroup_1.eContents().get(2);
-		private final Assignment cNameAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cNameIDTerminalRuleCall_2_0 = (RuleCall)cNameAssignment_2.eContents().get(0);
-		private final Keyword cSemicolonKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
-		//Attribute:
-		//	type=[Entity] (array?='[' length=INT? ']')? name=ID ';';
+		//AttributeType:
+		//	elementType=ElementType (array?='[' length=INT? ']')?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//type=[Entity] (array?='[' length=INT? ']')? name=ID ';'
+		//elementType=ElementType (array?='[' length=INT? ']')?
 		public Group getGroup() { return cGroup; }
 		
-		//type=[Entity]
-		public Assignment getTypeAssignment_0() { return cTypeAssignment_0; }
+		//elementType=ElementType
+		public Assignment getElementTypeAssignment_0() { return cElementTypeAssignment_0; }
 		
-		//[Entity]
-		public CrossReference getTypeEntityCrossReference_0_0() { return cTypeEntityCrossReference_0_0; }
-		
-		//ID
-		public RuleCall getTypeEntityIDTerminalRuleCall_0_0_1() { return cTypeEntityIDTerminalRuleCall_0_0_1; }
+		//ElementType
+		public RuleCall getElementTypeElementTypeParserRuleCall_0_0() { return cElementTypeElementTypeParserRuleCall_0_0; }
 		
 		//(array?='[' length=INT? ']')?
 		public Group getGroup_1() { return cGroup_1; }
@@ -147,21 +172,81 @@ public class EntitiesGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//']'
 		public Keyword getRightSquareBracketKeyword_1_2() { return cRightSquareBracketKeyword_1_2; }
+	}
+	public class ElementTypeElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.entites.entites.Entities.ElementType");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cBasicTypeParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cEntityTypeParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
-		//name=ID
-		public Assignment getNameAssignment_2() { return cNameAssignment_2; }
+		//ElementType:
+		//	BasicType | EntityType;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//BasicType | EntityType
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//BasicType
+		public RuleCall getBasicTypeParserRuleCall_0() { return cBasicTypeParserRuleCall_0; }
+		
+		//EntityType
+		public RuleCall getEntityTypeParserRuleCall_1() { return cEntityTypeParserRuleCall_1; }
+	}
+	public class BasicTypeElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.entites.entites.Entities.BasicType");
+		private final Assignment cTypeNameAssignment = (Assignment)rule.eContents().get(1);
+		private final Alternatives cTypeNameAlternatives_0 = (Alternatives)cTypeNameAssignment.eContents().get(0);
+		private final Keyword cTypeNameStringKeyword_0_0 = (Keyword)cTypeNameAlternatives_0.eContents().get(0);
+		private final Keyword cTypeNameIntKeyword_0_1 = (Keyword)cTypeNameAlternatives_0.eContents().get(1);
+		private final Keyword cTypeNameBooleanKeyword_0_2 = (Keyword)cTypeNameAlternatives_0.eContents().get(2);
+		
+		//BasicType:
+		//	typeName=('string' | 'int' | 'boolean');
+		@Override public ParserRule getRule() { return rule; }
+		
+		//typeName=('string' | 'int' | 'boolean')
+		public Assignment getTypeNameAssignment() { return cTypeNameAssignment; }
+		
+		//('string' | 'int' | 'boolean')
+		public Alternatives getTypeNameAlternatives_0() { return cTypeNameAlternatives_0; }
+		
+		//'string'
+		public Keyword getTypeNameStringKeyword_0_0() { return cTypeNameStringKeyword_0_0; }
+		
+		//'int'
+		public Keyword getTypeNameIntKeyword_0_1() { return cTypeNameIntKeyword_0_1; }
+		
+		//'boolean'
+		public Keyword getTypeNameBooleanKeyword_0_2() { return cTypeNameBooleanKeyword_0_2; }
+	}
+	public class EntityTypeElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.entites.entites.Entities.EntityType");
+		private final Assignment cEntityAssignment = (Assignment)rule.eContents().get(1);
+		private final CrossReference cEntityEntityCrossReference_0 = (CrossReference)cEntityAssignment.eContents().get(0);
+		private final RuleCall cEntityEntityIDTerminalRuleCall_0_1 = (RuleCall)cEntityEntityCrossReference_0.eContents().get(1);
+		
+		//EntityType:
+		//	entity=[Entity];
+		@Override public ParserRule getRule() { return rule; }
+		
+		//entity=[Entity]
+		public Assignment getEntityAssignment() { return cEntityAssignment; }
+		
+		//[Entity]
+		public CrossReference getEntityEntityCrossReference_0() { return cEntityEntityCrossReference_0; }
 		
 		//ID
-		public RuleCall getNameIDTerminalRuleCall_2_0() { return cNameIDTerminalRuleCall_2_0; }
-		
-		//';'
-		public Keyword getSemicolonKeyword_3() { return cSemicolonKeyword_3; }
+		public RuleCall getEntityEntityIDTerminalRuleCall_0_1() { return cEntityEntityIDTerminalRuleCall_0_1; }
 	}
 	
 	
 	private final ModelElements pModel;
 	private final EntityElements pEntity;
 	private final AttributeElements pAttribute;
+	private final AttributeTypeElements pAttributeType;
+	private final ElementTypeElements pElementType;
+	private final BasicTypeElements pBasicType;
+	private final EntityTypeElements pEntityType;
 	
 	private final Grammar grammar;
 	
@@ -175,6 +260,10 @@ public class EntitiesGrammarAccess extends AbstractGrammarElementFinder {
 		this.pModel = new ModelElements();
 		this.pEntity = new EntityElements();
 		this.pAttribute = new AttributeElements();
+		this.pAttributeType = new AttributeTypeElements();
+		this.pElementType = new ElementTypeElements();
+		this.pBasicType = new BasicTypeElements();
+		this.pEntityType = new EntityTypeElements();
 	}
 	
 	protected Grammar internalFindGrammar(GrammarProvider grammarProvider) {
@@ -227,13 +316,53 @@ public class EntitiesGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Attribute:
-	//	type=[Entity] (array?='[' length=INT? ']')? name=ID ';';
+	//	type=AttributeType name=ID ';';
 	public AttributeElements getAttributeAccess() {
 		return pAttribute;
 	}
 	
 	public ParserRule getAttributeRule() {
 		return getAttributeAccess().getRule();
+	}
+	
+	//AttributeType:
+	//	elementType=ElementType (array?='[' length=INT? ']')?;
+	public AttributeTypeElements getAttributeTypeAccess() {
+		return pAttributeType;
+	}
+	
+	public ParserRule getAttributeTypeRule() {
+		return getAttributeTypeAccess().getRule();
+	}
+	
+	//ElementType:
+	//	BasicType | EntityType;
+	public ElementTypeElements getElementTypeAccess() {
+		return pElementType;
+	}
+	
+	public ParserRule getElementTypeRule() {
+		return getElementTypeAccess().getRule();
+	}
+	
+	//BasicType:
+	//	typeName=('string' | 'int' | 'boolean');
+	public BasicTypeElements getBasicTypeAccess() {
+		return pBasicType;
+	}
+	
+	public ParserRule getBasicTypeRule() {
+		return getBasicTypeAccess().getRule();
+	}
+	
+	//EntityType:
+	//	entity=[Entity];
+	public EntityTypeElements getEntityTypeAccess() {
+		return pEntityType;
+	}
+	
+	public ParserRule getEntityTypeRule() {
+		return getEntityTypeAccess().getRule();
 	}
 	
 	//terminal ID:

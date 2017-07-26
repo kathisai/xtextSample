@@ -11,10 +11,15 @@ import org.eclipse.xtext.Action;
 import org.eclipse.xtext.Parameter;
 import org.eclipse.xtext.ParserRule;
 import org.eclipse.xtext.serializer.ISerializationContext;
+import org.eclipse.xtext.serializer.acceptor.SequenceFeeder;
 import org.eclipse.xtext.serializer.sequencer.AbstractDelegatingSemanticSequencer;
+import org.eclipse.xtext.serializer.sequencer.ITransientValueService.ValueTransient;
 import org.xtext.entites.entites.entities.Attribute;
+import org.xtext.entites.entites.entities.AttributeType;
+import org.xtext.entites.entites.entities.BasicType;
 import org.xtext.entites.entites.entities.EntitiesPackage;
 import org.xtext.entites.entites.entities.Entity;
+import org.xtext.entites.entites.entities.EntityType;
 import org.xtext.entites.entites.entities.Model;
 import org.xtext.entites.entites.services.EntitiesGrammarAccess;
 
@@ -35,8 +40,17 @@ public class EntitiesSemanticSequencer extends AbstractDelegatingSemanticSequenc
 			case EntitiesPackage.ATTRIBUTE:
 				sequence_Attribute(context, (Attribute) semanticObject); 
 				return; 
+			case EntitiesPackage.ATTRIBUTE_TYPE:
+				sequence_AttributeType(context, (AttributeType) semanticObject); 
+				return; 
+			case EntitiesPackage.BASIC_TYPE:
+				sequence_BasicType(context, (BasicType) semanticObject); 
+				return; 
 			case EntitiesPackage.ENTITY:
 				sequence_Entity(context, (Entity) semanticObject); 
+				return; 
+			case EntitiesPackage.ENTITY_TYPE:
+				sequence_EntityType(context, (EntityType) semanticObject); 
 				return; 
 			case EntitiesPackage.MODEL:
 				sequence_Model(context, (Model) semanticObject); 
@@ -48,13 +62,66 @@ public class EntitiesSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	
 	/**
 	 * Contexts:
+	 *     AttributeType returns AttributeType
+	 *
+	 * Constraint:
+	 *     (elementType=ElementType (array?='[' length=INT?)?)
+	 */
+	protected void sequence_AttributeType(ISerializationContext context, AttributeType semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     Attribute returns Attribute
 	 *
 	 * Constraint:
-	 *     (type=[Entity|ID] (array?='[' length=INT?)? name=ID)
+	 *     (type=AttributeType name=ID)
 	 */
 	protected void sequence_Attribute(ISerializationContext context, Attribute semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, EntitiesPackage.Literals.ATTRIBUTE__TYPE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, EntitiesPackage.Literals.ATTRIBUTE__TYPE));
+			if (transientValues.isValueTransient(semanticObject, EntitiesPackage.Literals.ATTRIBUTE__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, EntitiesPackage.Literals.ATTRIBUTE__NAME));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getAttributeAccess().getTypeAttributeTypeParserRuleCall_0_0(), semanticObject.getType());
+		feeder.accept(grammarAccess.getAttributeAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     ElementType returns BasicType
+	 *     BasicType returns BasicType
+	 *
+	 * Constraint:
+	 *     (typeName='string' | typeName='int' | typeName='boolean')
+	 */
+	protected void sequence_BasicType(ISerializationContext context, BasicType semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     ElementType returns EntityType
+	 *     EntityType returns EntityType
+	 *
+	 * Constraint:
+	 *     entity=[Entity|ID]
+	 */
+	protected void sequence_EntityType(ISerializationContext context, EntityType semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, EntitiesPackage.Literals.ENTITY_TYPE__ENTITY) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, EntitiesPackage.Literals.ENTITY_TYPE__ENTITY));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getEntityTypeAccess().getEntityEntityIDTerminalRuleCall_0_1(), semanticObject.eGet(EntitiesPackage.Literals.ENTITY_TYPE__ENTITY, false));
+		feeder.finish();
 	}
 	
 	

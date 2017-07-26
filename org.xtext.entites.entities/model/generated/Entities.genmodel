@@ -15,10 +15,20 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Entities.ecore#//Entity/attributes"/>
     </genClasses>
     <genClasses ecoreClass="Entities.ecore#//Attribute">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Entities.ecore#//Attribute/type"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Entities.ecore#//Attribute/array"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Entities.ecore#//Attribute/length"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Entities.ecore#//Attribute/type"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Entities.ecore#//Attribute/name"/>
+    </genClasses>
+    <genClasses ecoreClass="Entities.ecore#//AttributeType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Entities.ecore#//AttributeType/elementType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Entities.ecore#//AttributeType/array"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Entities.ecore#//AttributeType/length"/>
+    </genClasses>
+    <genClasses ecoreClass="Entities.ecore#//ElementType"/>
+    <genClasses ecoreClass="Entities.ecore#//BasicType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Entities.ecore#//BasicType/typeName"/>
+    </genClasses>
+    <genClasses ecoreClass="Entities.ecore#//EntityType">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Entities.ecore#//EntityType/entity"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

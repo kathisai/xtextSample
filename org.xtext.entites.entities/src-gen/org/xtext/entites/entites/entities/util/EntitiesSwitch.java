@@ -94,6 +94,36 @@ public class EntitiesSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case EntitiesPackage.ATTRIBUTE_TYPE:
+      {
+        AttributeType attributeType = (AttributeType)theEObject;
+        T result = caseAttributeType(attributeType);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case EntitiesPackage.ELEMENT_TYPE:
+      {
+        ElementType elementType = (ElementType)theEObject;
+        T result = caseElementType(elementType);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case EntitiesPackage.BASIC_TYPE:
+      {
+        BasicType basicType = (BasicType)theEObject;
+        T result = caseBasicType(basicType);
+        if (result == null) result = caseElementType(basicType);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case EntitiesPackage.ENTITY_TYPE:
+      {
+        EntityType entityType = (EntityType)theEObject;
+        T result = caseEntityType(entityType);
+        if (result == null) result = caseElementType(entityType);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       default: return defaultCase(theEObject);
     }
   }
@@ -142,6 +172,70 @@ public class EntitiesSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseAttribute(Attribute object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Attribute Type</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Attribute Type</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseAttributeType(AttributeType object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Element Type</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Element Type</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseElementType(ElementType object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Basic Type</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Basic Type</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseBasicType(BasicType object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Entity Type</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Entity Type</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseEntityType(EntityType object)
   {
     return null;
   }
